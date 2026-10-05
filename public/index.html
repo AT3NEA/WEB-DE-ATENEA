@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Portafolio - Desarrollador</title>
+  <link rel="stylesheet" href="estilos.css">
+  
+  <!-- Cargamos los datos de los proyectos primero y luego la lógica de app.js -->
+  <script src="proyectos.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+
+  <header class="encabezado">
+    <h1>Kevin Soto</h1>
+    <p class="subtitulo">Estudiante de Ingeniería en Sistemas & Desarrollador</p>
+  </header>
+
+  <main class="contenedor">
+    
+    <section class="seccion">
+      <h2>Sobre mí</h2>
+      <p>
+        Estudiante apasionado por el desarrollo de software, la creación de aplicaciones web, 
+        interfaces interactivas y proyectos académicos.
+      </p>
+    </section>
+
+    <section class="seccion">
+      <h2>Mis Proyectos</h2>
+      <!-- Aquí JavaScript va a insertar las tarjetas automáticamente -->
+      <div id="galeria-proyectos" class="galeria"></div>
+    </section>
+
+    <section class="seccion">
+      <h2>Contacto</h2>
+      <p>¿Te interesa conocer más sobre mi trabajo o colaborar?</p>
+      <a href="mailto:tu-correo@ejemplo.com" class="btn-contacto">Enviar Correo</a>
+    </section>
+
+  </main>
+
+</body>
+</html>
