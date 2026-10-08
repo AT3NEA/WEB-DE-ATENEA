@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATENEA - Contacto</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <header class="header-principal">
+        <nav class="nav-contenedor">
+            <a href="index.html" class="logo-container">
+                <img src="img/logo.png" alt="Logo Atenea" class="logo-img" onerror="this.style.display='none'"> 
+                <span class="marca-logo">ATENEA</span>
+            </a>
+            <ul class="menu-navegacion">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="proyectos.html">Proyectos</a></li>
+                <li><a href="sobre-mi.html">Sobre Mí</a></li>
+                <li><a href="contacto.html" class="activo">Contacto</a></li>
+            </ul>
+            <button id="btnTema" class="btn-tema">Modo Claro</button>
+        </nav>
+    </header>
+
+    <main class="main-contacto">
+        <section class="seccion-encabezado">
+            <h1>Contacto Directo</h1>
+            <p>Si deseas comunicarte conmigo para alguna propuesta, proyecto o consulta, puedes enviarme un correo directamente.</p>
+        </section>
+
+        <div class="contenedor-contacto-simple">
+            <div class="tarjeta-contacto-directo">
+                <span class="icono-gran-correo">✉️</span>
+                <h2>seiter320@gmail.com</h2>
+                <p>Selecciona una opción para comunicarte directamente:</p>
+
+                <div class="acciones-contacto">
+                    <!-- Abre directo la ventana de redacción de Gmail en el navegador -->
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=seiter320@gmail.com&su=Contacto%20desde%20ATENEA" target="_blank" class="btn-contacto-principal">
+                        Redactar en Gmail Web 🚀
+                    </a>
+
+                    <!-- Botón para copiar el correo directamente -->
+                    <button id="btnCopiarCorreo" class="btn-copiar-correo">
+                        📋 Copiar Correo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer-principal">
+        <p>&copy; 2026 ATENEA by Kev.S. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

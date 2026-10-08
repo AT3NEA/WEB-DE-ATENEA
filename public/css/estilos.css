@@ -1,0 +1,623 @@
+/* ===================================================
+   PORTAFOLIO ATENEA - ESTILOS PRINCIPALES (Kev.S)
+   =================================================== */
+
+:root {
+    /* MODO OSCURO (Base del Logo) */
+    --bg-principal: #0a0a0a;       
+    --bg-tarjeta: #141414;         
+    --bg-header: #000000;          
+    --texto-principal: #e0e0e0;    
+    --texto-secundario: #a0a0a0;   
+    --acento: #d4af37;             
+    --acento-hover: #b5952f;       
+    --borde: #2a2a2a;              
+    --sombra: 0 4px 12px rgba(0, 0, 0, 0.5);
+    --transicion: all 0.3s ease;
+}
+
+body.modo-claro {
+    /* MODO CLARO (Pastel suave, chill) */
+    --bg-principal: #f5f5f0;       
+    --bg-tarjeta: #ffffff;         
+    /* El header sigue siendo negro */
+    --texto-principal: #1a1a1a;    
+    --texto-secundario: #4a4a4a;   
+    --acento: #b8860b;             
+    --acento-hover: #996515;       
+    --borde: #dcdcdc;              
+    --sombra: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-principal);
+    color: var(--texto-principal);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: var(--transicion);
+}
+
+/* HEADER Y NAVEGACION (SIEMPRE NEGRO) */
+.header-principal {
+    background-color: #000000; 
+    border-bottom: 2px solid var(--acento); 
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 70px; /* Tamaño que me pediste */
+    width: auto;
+    border-radius: 50%; 
+    object-fit: cover;
+}
+
+.marca-logo {
+    color: var(--acento); 
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.menu-navegacion {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+}
+
+.menu-navegacion a {
+    text-decoration: none;
+    color: #e0e0e0; 
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transicion);
+}
+
+.menu-navegacion a:hover,
+.menu-navegacion a.activo {
+    color: var(--acento); 
+}
+
+.btn-tema {
+    background: transparent;
+    border: 1px solid var(--acento);
+    color: var(--acento);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: var(--transicion);
+}
+
+.btn-tema:hover {
+    background-color: var(--acento);
+    color: #000000;
+}
+
+/* CONTENIDO PRINCIPAL */
+main {
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+}
+
+.seccion-encabezado {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.seccion-encabezado h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--acento); 
+}
+
+.seccion-encabezado p {
+    color: var(--texto-secundario);
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* CARRUSEL DE IMÁGENES */
+.carrusel-contenedor {
+    max-width: 900px;
+    margin: 2rem auto;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 2px solid var(--acento);
+    box-shadow: var(--sombra);
+    position: relative;
+    background-color: var(--bg-tarjeta);
+}
+
+.carrusel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carrusel-slide {
+    min-width: 100%;
+    width: 100%;
+    height: 450px; 
+    object-fit: cover; /* Esto evita que la imagen se deforme o se haga gigante */
+}
+
+.carrusel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: var(--acento);
+    border: 1px solid var(--acento);
+    padding: 1rem 1.2rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    transition: var(--transicion);
+    z-index: 10;
+}
+
+.carrusel-btn:hover {
+    background: var(--acento);
+    color: #000;
+}
+
+.btn-prev { left: 15px; }
+.btn-next { right: 15px; }
+
+/* FOOTER */
+.footer-principal {
+    background-color: #000000; 
+    border-top: 1px solid var(--acento);
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--texto-secundario);
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+/* ===================================================
+   DISEÑO DE PÁGINA DE PROYECTOS (Sidebar + Grid)
+   =================================================== */
+.contenedor-layout-proyectos {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+/* Panel Izquierdo (Filtros) */
+.sidebar-filtros {
+    width: 280px;
+    background-color: var(--bg-tarjeta);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--borde);
+    position: sticky;
+    top: 100px;
+}
+
+.sidebar-filtros h3 {
+    color: var(--acento);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.input-busqueda-sidebar {
+    width: 100%;
+    background-color: var(--bg-principal);
+    color: var(--texto-principal);
+    border: 1px solid var(--borde);
+    padding: 0.8rem;
+    border-radius: 8px;
+    outline: none;
+    font-family: inherit;
+}
+
+.input-busqueda-sidebar:focus {
+    border-color: var(--acento);
+}
+
+.lista-filtros {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.btn-filtro {
+    background: transparent;
+    color: var(--texto-secundario);
+    border: 1px solid var(--borde);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    font-weight: bold;
+    transition: var(--transicion);
+}
+
+.btn-filtro:hover, .btn-filtro.activo {
+    border-color: var(--acento);
+    color: var(--acento);
+    background-color: rgba(212, 175, 55, 0.05);
+}
+
+/* Panel Derecho (Contenedor de Tarjetas) */
+.area-proyectos {
+    flex: 1;
+}
+
+.grid-tarjetas {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ESTA REGLA ARREGLA EL ZOOM AL CARGAR LA PÁGINA */
+.proyecto-card {
+    display: flex !important; /* Mantiene la disposición horizontal desde el inicio */
+    flex-direction: row;
+    background-color: var(--bg-tarjeta);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 0;
+    overflow: hidden;
+    text-align: left;
+    align-items: stretch;
+    transition: var(--transicion);
+}
+
+.img-proyecto-card {
+    width: 320px;
+    min-width: 250px;
+    height: 100%;
+    min-height: 200px;
+    object-fit: cover;
+    border-right: 1px solid var(--borde);
+    border-bottom: none;
+}
+
+.contenido-proyecto {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.categoria-etiqueta {
+    display: inline-block;
+    background-color: var(--acento);
+    color: #000;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    align-self: flex-start;
+}
+
+.fecha-proyecto {
+    font-size: 0.85rem;
+    color: var(--texto-secundario);
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.btn-ver-proyecto {
+    margin-top: auto;
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background-color: transparent;
+    border: 1px solid var(--acento);
+    color: var(--acento);
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+    transition: var(--transicion);
+    align-self: flex-start;
+}
+
+.btn-ver-proyecto:hover {
+    background-color: var(--acento);
+    color: #000;
+}
+
+/* Responsivo para celulares y pantallas pequeñas */
+@media (max-width: 850px) {
+    .contenedor-layout-proyectos {
+        flex-direction: column;
+    }
+    .sidebar-filtros {
+        width: 100%;
+        position: static;
+    }
+    .proyecto-card {
+        flex-direction: column;
+    }
+    .img-proyecto-card {
+        width: 100%;
+        height: 200px;
+        border-right: none;
+        border-bottom: 1px solid var(--borde);
+    }
+}
+
+
+
+/* ===================================================
+   DETALLES DEL PROYECTO (proyecto-animacion.html)
+   =================================================== */
+.main-detalle {
+    max-width: 900px;
+}
+
+.btn-volver {
+    display: inline-block;
+    color: var(--texto-secundario);
+    text-decoration: none;
+    margin-bottom: 2rem;
+    font-weight: bold;
+    transition: var(--transicion);
+}
+
+.btn-volver:hover {
+    color: var(--acento);
+}
+
+.encabezado-detalle h1 {
+    font-size: 2.5rem;
+    color: var(--acento);
+    margin-bottom: 0.5rem;
+}
+
+.texto-introduccion {
+    font-size: 1.2rem;
+    margin: 1.5rem 0;
+    color: var(--texto-principal);
+}
+
+.img-detalle-principal {
+    width: 50%;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border: 1px solid var(--borde);
+}
+
+.texto-descriptivo h3 {
+    color: var(--acento);
+    margin-bottom: 1rem;
+}
+
+.galeria-proyecto {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.galeria-proyecto img {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--borde);
+    object-fit: cover;
+}
+
+@media (max-width: 600px) {
+    .galeria-proyecto {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+/* ===================================================
+   PÁGINA SOBRE MÍ (sobre-mi.html)
+   =================================================== */
+.main-sobre-mi {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contenedor-perfil-centrado {
+    margin-top: 2rem;
+}
+
+.texto-perfil h2 {
+    color: var(--acento);
+    margin-top: 1.8rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.5rem;
+}
+
+.texto-perfil p {
+    font-size: 1.15rem;
+    margin-bottom: 1.2rem;
+    color: var(--texto-principal);
+    line-height: 1.7;
+}
+
+/* Caja de TikTok */
+.caja-tiktok {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: var(--bg-tarjeta);
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    border: 2px solid var(--borde);
+    margin-top: 2.5rem;
+    transition: var(--transicion);
+}
+
+.caja-tiktok:hover {
+    border-color: #ff0050; /* Color rojo TikTok */
+    box-shadow: 0 0 15px rgba(255, 0, 80, 0.2);
+}
+
+.logo-seiter {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #00f2fe; /* Color cian TikTok */
+}
+
+.tiktok-info h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--texto-principal);
+}
+
+.link-tiktok {
+    display: inline-block;
+    color: #ff0050;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.1rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.link-tiktok:hover {
+    text-decoration: underline;
+}
+
+
+
+
+/* ===================================================
+   PÁGINA DE CONTACTO SIMPLIFICADA (contacto.html)
+   =================================================== */
+.main-contacto {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contenedor-contacto-simple {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.tarjeta-contacto-directo {
+    width: 100%;
+    background-color: var(--bg-tarjeta);
+    border: 1px solid var(--borde);
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: var(--sombra);
+}
+
+.icono-gran-correo {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.tarjeta-contacto-directo h2 {
+    color: var(--acento);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    word-break: break-all;
+}
+
+.tarjeta-contacto-directo p {
+    color: var(--texto-secundario);
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+}
+
+.acciones-contacto {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.btn-contacto-principal {
+    background-color: var(--acento);
+    color: #000000;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.05rem;
+    transition: var(--transicion);
+    display: block;
+}
+
+.btn-contacto-principal:hover {
+    background-color: var(--acento-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.btn-contacto-secundario {
+    background-color: transparent;
+    color: var(--texto-principal);
+    border: 1px solid var(--borde);
+    padding: 0.9rem 1.5rem;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: var(--transicion);
+    display: block;
+}
+
+.btn-contacto-secundario:hover {
+    border-color: var(--acento);
+    color: var(--acento);
+}
+
+.btn-copiar-correo {
+    background-color: transparent;
+    color: var(--texto-secundario);
+    border: 1px dashed var(--borde);
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.btn-copiar-correo:hover {
+    color: var(--texto-principal);
+    border-color: var(--texto-principal);
+}

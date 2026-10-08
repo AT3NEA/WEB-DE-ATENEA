@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATENEA - Proyectos</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <!-- HEADER CORREGIDO CON TU LOGO -->
+    <header class="header-principal">
+        <nav class="nav-contenedor">
+            <a href="index.html" class="logo-container">
+                <img src="img/logo.png" alt="Logo Atenea" class="logo-img" onerror="this.style.display='none'"> 
+                <span class="marca-logo">ATENEA</span>
+            </a>
+            
+            <ul class="menu-navegacion">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="proyectos.html" class="activo">Proyectos</a></li>
+                <li><a href="sobre-mi.html">Sobre Mí</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <button id="btnTema" class="btn-tema">Modo Claro</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="seccion-encabezado">
+            <h1>Mis Proyectos</h1>
+            <p>Explora mi trabajo reciente. Aquí encontrarás desde software hasta animaciones.</p>
+        </section>
+
+        <!-- LAYOUT: FILTROS IZQUIERDA | PROYECTOS DERECHA -->
+        <div class="contenedor-layout-proyectos">
+            
+            <!-- PANEL IZQUIERDO (FILTROS) -->
+            <aside class="sidebar-filtros">
+                <h3>Buscar</h3>
+                <input type="text" id="inputBuscar" placeholder="Nombre del proyecto..." class="input-busqueda-sidebar">
+                
+                <h3 style="margin-top: 1.5rem;">Filtros</h3>
+                <div class="lista-filtros">
+                    <button class="btn-filtro activo" data-categoria="todos">Todos los proyectos</button>
+                    <button class="btn-filtro" data-categoria="programacion">💻 Programación</button>
+                    <button class="btn-filtro" data-categoria="animacion">🎨 Animación 3D</button>
+                    <!-- Aquí irán las otras 2 categorías cuando las decidas -->
+                    <button class="btn-filtro" data-categoria="construccion">🚧 En construcción</button>
+                    <button class="btn-filtro" data-categoria="construccion2">🚧 En construcción</button>
+                </div>
+            </aside>
+
+           <!-- PROYECTO 1: METEORITO 2 -->
+<article class="tarjeta-item proyecto-card" data-categoria="animacion">
+    <img src="img/blender1.png" alt="METEORITO 2" class="img-proyecto-card" onerror="this.src='https://via.placeholder.com/400x200/141414/d4af37?text=METEORITO+2'">
+    <div class="contenido-proyecto">
+        <span class="categoria-etiqueta">Animación 3D</span>
+        <h3>METEORITO 2</h3>
+        <p class="fecha-proyecto">Remake en Blender</p>
+        <p>Remake de mi primer proyecto de animación. Creado y renderizado desde cero en Blender superando limitaciones técnicas de hardware.</p>
+        <a href="proyecto-animacion.html" class="btn-ver-proyecto">Ver Detalles</a>
+    </div>
+</article>
+
+                    <!-- PROYECTO 2: PROGRAMACIÓN (En construcción) -->
+                    <article class="tarjeta-item proyecto-card" data-categoria="programacion">
+                        <img src="img/construccion.png" alt="En construcción" class="img-proyecto-card" onerror="this.src='https://via.placeholder.com/400x200/141414/d4af37?text=En+Construccion'">
+                        <div class="contenido-proyecto">
+                            <span class="categoria-etiqueta">Programación</span>
+                            <h3>En construcción</h3>
+                            <p class="fecha-proyecto">Próximamente</p>
+                            <p>Actualmente estoy documentando mis proyectos de código. ¡Pronto estarán disponibles aquí!</p>
+                            <!-- Botón desactivado visualmente -->
+                            <a href="#" class="btn-ver-proyecto" style="pointer-events: none; opacity: 0.5;">No disponible aún</a>
+                        </div>
+                    </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer-principal">
+        <p>&copy; 2026 ATENEA by Kev.S. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

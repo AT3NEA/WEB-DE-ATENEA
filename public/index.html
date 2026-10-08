@@ -1,45 +1,63 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Portafolio - Desarrollador</title>
-  <link rel="stylesheet" href="estilos.css">
-  
-  <!-- Cargamos los datos de los proyectos primero y luego la lógica de app.js -->
-  <script src="proyectos.js" defer></script>
-  <script src="app.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATENEA - Inicio</title>
+    <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
+    <header class="header-principal">
+        <nav class="nav-contenedor">
+            <a href="index.html" class="logo-container">
+                <img src="img/logo.png" alt="Logo Atenea" class="logo-img" onerror="this.style.display='none'"> 
+                <span class="marca-logo">ATENEA</span>
+            </a>
+            
+            <ul class="menu-navegacion">
+                <li><a href="index.html" class="activo">Inicio</a></li>
+                <li><a href="proyectos.html">Proyectos</a></li>
+                <li><a href="sobre-mi.html">Sobre Mí</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <button id="btnTema" class="btn-tema">Modo Claro</button>
+        </nav>
+    </header>
 
-  <header class="encabezado">
-    <h1>Kevin Soto</h1>
-    <p class="subtitulo">Estudiante de Ingeniería en Sistemas & Desarrollador</p>
-  </header>
+    <main>
+        <section class="seccion-encabezado">
+            <h1>Bienvenido a ATENEA</h1>
+            <p style="font-size: 1.4rem; color: var(--texto-principal); margin-bottom: 1.5rem;">
+                La marca oficial de <strong>Kev.S</strong>
+            </p>
+            <p>
+                ATENEA es un espacio dedicado a la creación y publicación de múltiples proyectos multidisciplinarios. 
+                Aquí expongo mis creaciones tecnológicas, desde desarrollo de software y animaciones, hasta soluciones creativas.
+            </p>
+            <br>
+            <p>
+                Este portafolio está diseñado para que conozcas de lo que soy capaz. Si buscas una colaboración laboral, 
+                participación en un proyecto a gran escala, o si mis habilidades se alinean con lo que necesitas, 
+                estás en el lugar correcto.
+            </p>
+        </section>
 
-  <main class="contenedor">
-    
-    <section class="seccion">
-      <h2>Sobre mí</h2>
-      <p>
-        Estudiante apasionado por el desarrollo de software, la creación de aplicaciones web, 
-        interfaces interactivas y proyectos académicos.
-      </p>
-    </section>
+        <!-- CARRUSEL DE IMÁGENES -->
+        <div class="carrusel-contenedor">
+            <button class="carrusel-btn btn-prev">❮</button>
+            <div class="carrusel-track" id="carruselTrack">
+                <img src="img/slide1.png" alt="Proyecto 1" class="carrusel-slide" onerror="this.src='https://via.placeholder.com/900x450/141414/d4af37?text=Imagen+1'">
+                <img src="img/slide2.png" alt="Proyecto 2" class="carrusel-slide" onerror="this.src='https://via.placeholder.com/900x450/141414/d4af37?text=Imagen+2'">
+                <img src="img/slide3.png" alt="Proyecto 3" class="carrusel-slide" onerror="this.src='https://via.placeholder.com/900x450/141414/d4af37?text=Imagen+3'">
+            </div>
+            <button class="carrusel-btn btn-next">❯</button>
+        </div>
+    </main>
 
-    <section class="seccion">
-      <h2>Mis Proyectos</h2>
-      <!-- Aquí JavaScript va a insertar las tarjetas automáticamente -->
-      <div id="galeria-proyectos" class="galeria"></div>
-    </section>
+    <footer class="footer-principal">
+        <p>&copy; 2026 ATENEA by Kev.S. Todos los derechos reservados.</p>
+    </footer>
 
-    <section class="seccion">
-      <h2>Contacto</h2>
-      <p>¿Te interesa conocer más sobre mi trabajo o colaborar?</p>
-      <a href="mailto:tu-correo@ejemplo.com" class="btn-contacto">Enviar Correo</a>
-    </section>
-
-  </main>
-
+    <script src="js/app.js"></script>
 </body>
 </html>
