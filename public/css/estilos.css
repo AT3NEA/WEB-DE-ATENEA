@@ -621,3 +621,108 @@ main {
     color: var(--texto-principal);
     border-color: var(--texto-principal);
 }
+
+
+
+/* ===================================================
+   AJUSTES RESPONSIVOS GLOBALES (CELULARES Y TABLETS)
+   =================================================== */
+
+/* Evita desbordamiento horizontal y ajusta imágenes globales */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Reglas aplicadas cuando la pantalla mide menos de 768px (celulares) */
+@media (max-width: 768px) {
+
+    /* 1. Header y Navegación acomodados */
+    .header-principal {
+        padding: 0.8rem 1rem;
+    }
+
+    .nav-contenedor {
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: center;
+    }
+
+    .menu-navegacion {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.6rem;
+        padding: 0;
+    }
+
+    .menu-navegacion a {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.6rem;
+    }
+
+    .btn-tema {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    /* 2. Tamaños de texto en celular */
+    h1 {
+        font-size: 1.8rem !important;
+    }
+
+    h2 {
+        font-size: 1.4rem !important;
+    }
+
+    /* 3. Espaciado general de las páginas */
+    main, .main-contacto, .main-detalle {
+        padding: 1rem !important;
+    }
+
+    /* 4. En celular la imagen principal de METEORITO 2 se expande al 100% para que no quede diminuta */
+    .img-detalle-principal {
+        width: 100% !important;
+    }
+
+    /* 5. Tarjetas de Proyectos en vertical */
+    .proyecto-card {
+        flex-direction: column !important;
+    }
+
+    .img-proyecto-card, 
+    .contenedor-img-card {
+        width: 100% !important;
+        height: 200px !important;
+        border-right: none !important;
+        border-bottom: 1px solid var(--borde) !important;
+    }
+
+    .contenido-proyecto {
+        padding: 1.2rem !important;
+    }
+
+    /* 6. Formulario y Contacto */
+    .contenedor-contacto-simple, 
+    .tarjeta-contacto-directo {
+        padding: 1.5rem 1rem !important;
+    }
+
+    .acciones-contacto {
+        width: 100%;
+    }
+
+    .btn-contacto-principal, 
+    .btn-copiar-correo {
+        width: 100%;
+        text-align: center;
+    }
+}
