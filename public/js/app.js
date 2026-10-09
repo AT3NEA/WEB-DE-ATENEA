@@ -1,120 +1,90 @@
-/* ===================================================
-   ATENEA - LÓGICA DE INTERFAZ Y CARRUSEL
-   =================================================== */
-
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. LÓGICA DEL MODO OSCURO / CLARO ---
+    // ==========================================
+    // 1. CAMBIO DE TEMA (MODO CLARO / OSCURO)
+    // ==========================================
     const btnTema = document.getElementById('btnTema');
-    
-    if (localStorage.getItem('tema') === 'claro') {
-        document.body.classList.add('modo-claro');
-        if (btnTema) btnTema.textContent = 'Modo Oscuro';
-    } else {
-        if (btnTema) btnTema.textContent = 'Modo Claro';
-    }
-
     if (btnTema) {
+        const temaGuardado = localStorage.getItem('tema');
+        if (temaGuardado === 'claro') {
+            document.body.classList.add('modo-claro');
+            btnTema.textContent = 'Modo Oscuro';
+        }
+
         btnTema.addEventListener('click', () => {
             document.body.classList.toggle('modo-claro');
             const esClaro = document.body.classList.contains('modo-claro');
-            
-            localStorage.setItem('tema', esClaro ? 'claro' : 'oscuro');
             btnTema.textContent = esClaro ? 'Modo Oscuro' : 'Modo Claro';
+            localStorage.setItem('tema', esClaro ? 'claro' : 'oscuro');
         });
     }
 
-    // --- 2. LÓGICA DEL CARRUSEL (index.html) ---
-    const track = document.getElementById('carruselTrack');
-    const btnPrev = document.querySelector('.btn-prev');
-    const btnNext = document.querySelector('.btn-next');
+    // ==========================================
+    // 2. BÚSQUEDA Y FILTROS EN PROYECTOS
+    // ==========================================
+    const inputBusqueda = document.querySelector('.input-busqueda-sidebar');
+    const botonesFiltro = document.querySelectorAll('.btn-filtro');
+    const tarjetasProyectos = document.querySelectorAll('.proyecto-card, .tarjeta-item');
 
-    if (track && btnPrev && btnNext) {
-        const slides = document.querySelectorAll('.carrusel-slide');
-        let index = 0;
+    if (tarjetasProyectos.length > 0) {
+        let filtroActivo = 'todos';
 
-        const moverCarrusel = () => {
-            track.style.transform = `translateX(-${index * 100}%)`;
-        };
+        function aplicarFiltros() {
+            const textoBusqueda = inputBusqueda ? inputBusqueda.value.toLowerCase().trim() : '';
 
-        const avanzar = () => {
-            index = (index < slides.length - 1) ? index + 1 : 0;
-            moverCarrusel();
-        };
+            tarjetasProyectos.forEach(tarjeta => {
+                const categoria = tarjeta.getAttribute('data-categoria') || '';
+                const contenidoTexto = tarjeta.innerText.toLowerCase();
 
-        const retroceder = () => {
-            index = (index > 0) ? index - 1 : slides.length - 1;
-            moverCarrusel();
-        };
+                const coincideCategoria = (filtroActivo === 'todos') || (categoria === filtroActivo);
+                const coincideBusqueda = (textoBusqueda === '') || contenidoTexto.includes(textoBusqueda);
 
-        btnNext.addEventListener('click', avanzar);
-        btnPrev.addEventListener('click', retroceder);
-
-        // Auto-play cada 4 segundos
-        setInterval(avanzar, 4000);
-    }
-});
-
-// --- 3. LÓGICA DE FILTROS Y BÚSQUEDA (proyectos.html) ---
-    const btnFiltros = document.querySelectorAll('.btn-filtro');
-    const proyectosCards = document.querySelectorAll('.proyecto-card');
-    const inputBuscar = document.getElementById('inputBuscar');
-
-    // Lógica para los botones de categorías
-    if (btnFiltros.length > 0 && proyectosCards.length > 0) {
-        btnFiltros.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Quitar estilo activo a todos y ponérselo al cliqueado
-                btnFiltros.forEach(b => b.classList.remove('activo'));
-                btn.classList.add('activo');
-
-                const categoriaSeleccionada = btn.getAttribute('data-categoria');
-
-                // Mostrar/Ocultar tarjetas
-                proyectosCards.forEach(tarjeta => {
-                    if (categoriaSeleccionada === 'todos' || tarjeta.getAttribute('data-categoria') === categoriaSeleccionada) {
-                        tarjeta.style.display = 'flex'; // Muestra la tarjeta
-                    } else {
-                        tarjeta.style.display = 'none'; // Oculta la tarjeta
-                    }
-                });
-            });
-        });
-    }
-
-    // Lógica para el buscador por texto
-    if (inputBuscar) {
-        inputBuscar.addEventListener('keyup', (e) => {
-            const textoBusqueda = e.target.value.toLowerCase();
-            
-            proyectosCards.forEach(tarjeta => {
-                // Busca el título dentro del h3 de cada tarjeta
-                const titulo = tarjeta.querySelector('h3').textContent.toLowerCase();
-                
-                if (titulo.includes(textoBusqueda)) {
-                    tarjeta.style.display = 'flex';
+                if (coincideCategoria && coincideBusqueda) {
+                    tarjeta.classList.remove('oculto');
                 } else {
-                    tarjeta.style.display = 'none';
+                    tarjeta.classList.add('oculto');
                 }
             });
+        }
+
+        // Evento de clics en los botones de categoría
+        botonesFiltro.forEach(btn => {
+            btn.addEventListener('click', () => {
+                botonesFiltro.forEach(b => b.classList.remove('activo'));
+                btn.classList.add('activo');
+
+                const textoBtn = btn.innerText.toLowerCase();
+                if (textoBtn.includes('programaci')) {
+                    filtroActivo = 'programacion';
+                } else if (textoBtn.includes('animaci') || textoBtn.includes('3d') || textoBtn.includes('blender')) {
+                    filtroActivo = 'animacion';
+                } else {
+                    filtroActivo = 'todos';
+                }
+
+                aplicarFiltros();
+            });
         });
+
+        // Evento al escribir en la barra de búsqueda
+        if (inputBusqueda) {
+            inputBusqueda.addEventListener('input', aplicarFiltros);
+        }
     }
 
-
-    // --- 4. LÓGICA DE COPIAR CORREO (contacto.html) ---
+    // ==========================================
+    // 3. COPIAR CORREO EN PÁGINA DE CONTACTO
+    // ==========================================
     const btnCopiar = document.getElementById('btnCopiarCorreo');
     if (btnCopiar) {
         btnCopiar.addEventListener('click', () => {
-            navigator.clipboard.writeText('seiter320@gmail.com');
-            const textoOriginal = btnCopiar.textContent;
-            btnCopiar.textContent = '¡Copiado al portapapeles! ✅';
-            btnCopiar.style.borderColor = 'var(--acento)';
-            btnCopiar.style.color = 'var(--acento)';
-            
-            setTimeout(() => {
-                btnCopiar.textContent = textoOriginal;
-                btnCopiar.style.borderColor = 'var(--borde)';
-                btnCopiar.style.color = 'var(--texto-secundario)';
-            }, 2000);
+            navigator.clipboard.writeText('seiter320@gmail.com').then(() => {
+                const textoOriginal = btnCopiar.innerText;
+                btnCopiar.innerText = '¡Copiado! ✅';
+                setTimeout(() => {
+                    btnCopiar.innerText = textoOriginal;
+                }, 2000);
+            });
         });
     }
+});

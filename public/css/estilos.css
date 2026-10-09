@@ -726,3 +726,17 @@ img, video {
         text-align: center;
     }
 }
+
+
+
+
+
+
+
+
+
+
+/* Permite que el JavaScript oculte las tarjetas al buscar o filtrar */
+.proyecto-card.oculto, .tarjeta-item.oculto {
+    display: none !important;
+}
