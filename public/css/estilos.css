@@ -740,3 +740,130 @@ img, video {
 .proyecto-card.oculto, .tarjeta-item.oculto {
     display: none !important;
 }
+
+
+
+
+
+/*ADICIONAL CARRUSEL LOS ESTILOS NO ESTABAN BIEN PUESTOS*/
+/* ==========================================
+   ESTILOS DEL CARRUSEL
+   ========================================== */
+.carrusel-contenedor {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 2rem auto;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid var(--borde);
+    background: var(--fondo-card);
+}
+
+.carrusel-track {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+    width: 100%;
+}
+
+.carrusel-slide {
+    min-width: 100%;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.carrusel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: var(--acento);
+    border: 1px solid var(--acento);
+    font-size: 1.5rem;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.carrusel-btn:hover {
+    background: rgba(212, 175, 55, 0.3);
+}
+
+.btn-prev {
+    left: 15px;
+}
+
+.btn-next {
+    right: 15px;
+}
+
+
+
+
+
+
+
+
+/* ===================================================
+   INTRO / SPLASH SCREEN (ESTILO CINEMATOGRÁFICO)
+   =================================================== */
+.intro-splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    opacity: 1;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.intro-splash.ocultar {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.intro-contenido {
+    text-align: center;
+    animation: fadeInScale 1.5s ease-out forwards;
+}
+
+.intro-logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--acento);
+    margin-bottom: 1rem;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+}
+
+.intro-texto {
+    color: var(--acento);
+    font-size: 2.5rem;
+    letter-spacing: 6px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+@keyframes fadeInScale {
+    0% {
+        transform: scale(0.85);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.03);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

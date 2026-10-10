@@ -47,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Evento de clics en los botones de categoría
         botonesFiltro.forEach(btn => {
             btn.addEventListener('click', () => {
                 botonesFiltro.forEach(b => b.classList.remove('activo'));
@@ -55,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const textoBtn = btn.innerText.toLowerCase();
                 if (textoBtn.includes('programaci')) {
-                    filtroActivo = 'programacion';
+                    filtro_activo = 'programacion';
                 } else if (textoBtn.includes('animaci') || textoBtn.includes('3d') || textoBtn.includes('blender')) {
                     filtroActivo = 'animacion';
                 } else {
@@ -66,14 +65,47 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Evento al escribir en la barra de búsqueda
         if (inputBusqueda) {
             inputBusqueda.addEventListener('input', aplicarFiltros);
         }
     }
 
     // ==========================================
-    // 3. COPIAR CORREO EN PÁGINA DE CONTACTO
+    // 3. CARRUSEL DE IMÁGENES (INDEX)
+    // ==========================================
+    const track = document.getElementById('carruselTrack');
+    const slides = document.querySelectorAll('.carrusel-slide');
+    const btnPrev = document.querySelector('.btn-prev');
+    const btnNext = document.querySelector('.btn-next');
+
+    if (track && slides.length > 0 && btnPrev && btnNext) {
+        let currentIndex = 0;
+
+        function actualizarCarrusel() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        btnPrev.addEventListener('click', (e) => {
+            e.preventDefault();
+            currentIndex--;
+            if (currentIndex < 0) {
+                currentIndex = slides.length - 1;
+            }
+            actualizarCarrusel();
+        });
+
+        btnNext.addEventListener('click', (e) => {
+            e.preventDefault();
+            currentIndex++;
+            if (currentIndex >= slides.length) {
+                currentIndex = 0;
+            }
+            actualizarCarrusel();
+        });
+    }
+
+    // ==========================================
+    // 4. COPIAR CORREO EN PÁGINA DE CONTACTO
     // ==========================================
     const btnCopiar = document.getElementById('btnCopiarCorreo');
     if (btnCopiar) {
@@ -88,3 +120,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+
+
+
+
+
+
+
+// ==========================================
+    // 5. INTRO CINEMATOGRÁFICA (SPLASH SCREEN)
+    // ==========================================
+    const introSplash = document.getElementById('introSplash');
+    if (introSplash) {
+        // Si ya vio la intro en esta pestaña, la ocultamos de inmediato
+        if (sessionStorage.getItem('introVista')) {
+            introSplash.style.display = 'none';
+        } else {
+            // Audio sutil de tipo brillo/campanita (efecto chill)
+            const audioIntro = new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3');
+            audioIntro.volume = 0.3; // Volumen moderado para que no suene fuerte de golpe
+            audioIntro.play().catch(() => {}); // Reproduce si el navegador lo permite
+
+            // Desvanecer la intro después de 2 segundos exactos
+            setTimeout(() => {
+                introSplash.classList.add('ocultar');
+                setTimeout(() => {
+                    introSplash.style.display = 'none';
+                    sessionStorage.setItem('introVista', 'true');
+                }, 800); // Coincide con la transición CSS de 0.8s
+            }, 2000);
+        }
+    }
