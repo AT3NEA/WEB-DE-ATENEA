@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             osc.frequency.setValueAtTime(500, ctx.currentTime);
             osc.frequency.exponentialRampToValueAtTime(120, ctx.currentTime + 0.04);
 
-            gain.gain.setValueAtTime(0.08, ctx.currentTime);
+            gain.gain.setValueAtTime(0.15, ctx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
 
             osc.connect(gain);
